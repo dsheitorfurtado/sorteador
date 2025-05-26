@@ -67,7 +67,15 @@ class _HomePageState extends State<HomePage> {
             imagemSelecionada[2] = Random().nextInt(images.length);
           });
 
-          
+          if (imagemSelecionada[0] == imagemSelecionada[1] && imagemSelecionada[1] == imagemSelecionada[2]) {
+            showDialog(
+              context: context, 
+              builder: (context) => AlertDialog(
+                title: Text("PArabens"),
+                content: Text("voce ganhou"),  
+              )
+            );
+          }
 
         },
         child: Icon(Icons.catching_pokemon),
