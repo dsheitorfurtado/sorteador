@@ -4,7 +4,7 @@ import 'package:helloworld/telas/tela_principal.dart';
 void main() {
   runApp(
     MaterialApp(
-      title: "SuperBet",
+      title: "Teste",
       home: HomePage(),
     )
   );
