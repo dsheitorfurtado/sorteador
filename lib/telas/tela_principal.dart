@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -15,34 +16,35 @@ class _HomePageState extends State<HomePage> {
 
   List<int> imagemSelecionada = [0, 0, 0];
 
-  void spin() async {
-    for (int i = 0; i < 10; i++) {
-      await Future.delayed(Duration(milliseconds: 100), () {
-        setState(() {
-          imagemSelecionada = List.generate(
-            3,
-            (_) => Random().nextInt(images.length),
-          );
-        });
+  void sortear()
+  {
+    int i = 0;
+    while (i < 5) {
+      setState(() {
+        imagemSelecionada[0] = Random().nextInt(images.length);
+        imagemSelecionada[1] = Random().nextInt(images.length);
+        imagemSelecionada[2] = Random().nextInt(images.length);
+        sleep(Duration(milliseconds: 500));
       });
+      
+      i++; // mesma coisa que i = i +1;
     }
+  
+    
 
-    if (imagemSelecionada[0] == imagemSelecionada[1] &&
-        imagemSelecionada[1] == imagemSelecionada[2]) {
+    if (imagemSelecionada[0] == imagemSelecionada[1] && imagemSelecionada[1] == imagemSelecionada[2]) {
+
+      /// aqui vai somar
+
       showDialog(
-        context: context,
-        builder:
-            (context) => AlertDialog(
-              title: Text("Parabéns!"),
-              content: Text("Você ganhou!"),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: Text("OK"),
-                ),
-              ],
-            ),
+        context: context, 
+        builder: (context) => AlertDialog(
+          title: Text("Parabens"),
+          content: Text("voce ganhou"),  
+        )
       );
+    } else {
+      // aqui vai diminuir
     }
   }
 
@@ -61,22 +63,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.amber,
       floatingActionButton: FloatingActionButton.large(
         onPressed: () {
-          setState(() {
-            imagemSelecionada[0] = Random().nextInt(images.length);
-            imagemSelecionada[1] = Random().nextInt(images.length);
-            imagemSelecionada[2] = Random().nextInt(images.length);
-          });
-
-          if (imagemSelecionada[0] == imagemSelecionada[1] && imagemSelecionada[1] == imagemSelecionada[2]) {
-            showDialog(
-              context: context, 
-              builder: (context) => AlertDialog(
-                title: Text("PArabens"),
-                content: Text("voce ganhou"),  
-              )
-            );
-          }
-
+          sortear();
         },
         child: Icon(Icons.catching_pokemon),
         backgroundColor: Colors.cyan,
@@ -108,6 +95,9 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+
+       
+
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
