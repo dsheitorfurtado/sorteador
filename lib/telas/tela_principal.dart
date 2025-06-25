@@ -13,8 +13,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   // isso é uma lista de texto, que contem o endereço das imagens
   List<String> images = ['assets/1.jpg', 'assets/2.jpg', 'assets/3.jpg'];
-
   List<int> imagemSelecionada = [0, 0, 0];
+
+  //int somatoria = 0; // numero inteiro
+  double somatorio = 100.0; // numero com virgula, por exemplo dinheiro
 
   void sortear()
   {
@@ -29,12 +31,10 @@ class _HomePageState extends State<HomePage> {
       
       i++; // mesma coisa que i = i +1;
     }
-  
-    
-
     if (imagemSelecionada[0] == imagemSelecionada[1] && imagemSelecionada[1] == imagemSelecionada[2]) {
 
       /// aqui vai somar
+      somatorio = somatorio + 100.0;
 
       showDialog(
         context: context, 
@@ -43,8 +43,8 @@ class _HomePageState extends State<HomePage> {
           content: Text("voce ganhou"),  
         )
       );
-    } else {
-      // aqui vai diminuir
+    } else { // quando as imagens forem diferentes, vai entrar aqui
+       somatorio = somatorio - 100.0;
     }
   }
 
@@ -93,6 +93,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
+          Text(somatorio.toString())
         ],
       ),
 
