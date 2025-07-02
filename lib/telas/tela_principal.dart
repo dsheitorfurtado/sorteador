@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
         imagemSelecionada[0] = Random().nextInt(images.length);
         imagemSelecionada[1] = Random().nextInt(images.length);
         imagemSelecionada[2] = Random().nextInt(images.length);
-        sleep(Duration(milliseconds: 500));
+        
       });
       
       i++; // mesma coisa que i = i +1;
@@ -93,11 +93,17 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-          Text(somatorio.toString())
+          Text(
+            "Pontuação: " + somatorio.toString(), 
+            style: TextStyle(
+              fontSize: 30, // tamanho do texto
+              color: Colors.black, // cor do texto
+              fontWeight: FontWeight.w900, // largura do texto
+              backgroundColor: Color.fromARGB(255, 255, 255, 255) /// cor do fundo
+            )
+          ),
         ],
       ),
-
-       
 
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
